@@ -19,10 +19,11 @@ public class TestPicture17
   public static void main(String[] args)
   {
       //opens picture using a dialog box
-      /**/
+      /*
      String fileName = FileChooser.pickAFile();
      Picture pictObj = new Picture(fileName);
      pictObj.explore();
+     /**/
 
      //opens a pictue using a path
      //Picture apic = new Picture("C:\\Users\\khayes\\Favorites\\Documents\APCS- Java\chap03\Curriclum 2013\Picture Color labs\images\\beach.jpg");
@@ -30,9 +31,10 @@ public class TestPicture17
      //relative path
      Picture apic = new Picture("images\\beach.jpg");
      Picture ferris1 = new Picture("images/2000 ferris wheel2.jpg");
-     Picture ferris2 = new Picture("images/2000 ferris wheel2.jpg");
+     Picture moto = new Picture("images/redMotorcycle.jpg");
      Picture ferris3 = new Picture("images/2000 ferris wheel2.jpg");
 
+     //displays picture
      //apic.explore();
      ferris1.explore();
      
@@ -43,6 +45,25 @@ public class TestPicture17
     
      //how many pixels or how large array
     System.out.println("This is a large array"+pixels.length  );
+    
+    for (Pixel pixelobj : pixels)
+    {
+        if ((pixelobj.getRed()>pixelobj.getGreen())&&(pixelobj.getRed()>pixelobj.getBlue()))
+            pixelobj.setColor(new Color(255,0,0));
+        else if ((pixelobj.getGreen()>pixelobj.getRed())&&(pixelobj.getGreen()>pixelobj.getBlue()))
+            pixelobj.setColor(new Color(0,255,0));
+        else if ((pixelobj.getBlue()>pixelobj.getGreen())&&(pixelobj.getBlue()>pixelobj.getRed()))
+            pixelobj.setColor(new Color(0,0,255));
+        else if ((pixelobj.getRed()==pixelobj.getGreen())&&(pixelobj.getRed()!=pixelobj.getBlue()))
+            pixelobj.setColor(new Color(255,255,0));
+        else if ((pixelobj.getRed()==pixelobj.getBlue())&&(pixelobj.getGreen()!=pixelobj.getBlue()))
+            pixelobj.setColor(new Color(255,0,255));
+        else if ((pixelobj.getGreen()==pixelobj.getBlue())&&(pixelobj.getGreen()!=pixelobj.getRed()))
+            pixelobj.setColor(new Color(0,255,255));
+    
+        else 
+            pixelobj.setColor(new Color(255,255,255));
+    }
 
 
     /**/
@@ -50,6 +71,14 @@ public class TestPicture17
     System.out.println(pixels[17]);
     //access each pixel
     Pixel spot = ferris1.getPixel(100,100);
+    Pixel ferr17 = pixels[17];
+    
+    //ferr17.setRed(255);
+    //ferr17.setGreen(255);
+    //ferr17.setBlue(255);
+    Color newColor = new Color(0,255,255);
+    ferr17.setColor(newColor);
+    ferris1.explore();
     
     System.out.println(pixels[17].getColor());
     System.out.println(spot);

@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class SheparFaireyLab here.
+ * Write a description of class ShepardFaireyLab here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
 
-public class SheparFaireyLab
+public class ShepardFaireyLab 
 {
     /**
      * main method, to test the picture
