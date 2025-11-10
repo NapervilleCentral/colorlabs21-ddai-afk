@@ -18,6 +18,45 @@ public class TestPicture17
      */
   public static void main(String[] args)
   {
+      Picture pic1 = new Picture("images\\CumberlandIsland.jpg");
+      Picture pic2 = new Picture("images\\CumberlandIsland.jpg");
+      Picture pic3 = new Picture("images\\CumberlandIsland.jpg");
+      Picture pic4 = new Picture("images\\CumberlandIsland.jpg");
+      
+      Pixel[] px1 = pic1.getPixels();
+      Pixel[] px2 = pic2.getPixels();
+      Pixel[] px3 = pic3.getPixels();
+      Pixel[] px4 = pic4.getPixels();
+      
+      pic1.explore();
+      //negate
+      for (Pixel pxobj : px1)
+      {
+          pxobj.setColor(new Color(255-pxobj.getRed(),255-pxobj.getGreen(),255-pxobj.getBlue()));
+      }
+      pic1.explore();
+      //darken
+      for (Pixel pxobj : px1)
+      {
+          pxobj.setColor(new Color((int)(pxobj.getRed()*0.5),(int)(pxobj.getGreen()*0.5),(int)(pxobj.getBlue()*0.5)));
+      }
+      pic1.explore();
+      
+      pic2.explore();
+      //adjustRed
+      for (Pixel pxobj : px2)
+      {
+          
+      }
+      pic2.explore();
+      //grayscale
+      for (Pixel pxobj : px2)
+      {
+          double avg = (pxobj.getRed()+pxobj.getGreen()+pxobj.getBlue())/3;
+          pxobj.setColor(new Color((int)avg,(int)avg,(int)avg));
+      }
+      pic2.explore();
+      
       //opens picture using a dialog box
       /*
      String fileName = FileChooser.pickAFile();
@@ -27,10 +66,11 @@ public class TestPicture17
 
      //opens a pictue using a path
      //Picture apic = new Picture("C:\\Users\\khayes\\Favorites\\Documents\APCS- Java\chap03\Curriclum 2013\Picture Color labs\images\\beach.jpg");
-     
+     /*
      //relative path
      Picture apic = new Picture("images\\beach.jpg");
      Picture ferris1 = new Picture("images/2000 ferris wheel2.jpg");
+     //Picture ferris1 = new Picture("images/IMG_0747.jpeg");
      Picture moto = new Picture("images/redMotorcycle.jpg");
      Picture ferris3 = new Picture("images/2000 ferris wheel2.jpg");
 
@@ -45,7 +85,8 @@ public class TestPicture17
     
      //how many pixels or how large array
     System.out.println("This is a large array"+pixels.length  );
-    
+    /**/
+    /*
     for (Pixel pixelobj : pixels)
     {
         if ((pixelobj.getRed()>pixelobj.getGreen())&&(pixelobj.getRed()>pixelobj.getBlue()))
@@ -64,9 +105,13 @@ public class TestPicture17
         else 
             pixelobj.setColor(new Color(255,255,255));
     }
+    /*
+    for (Pixel pixelobj : pixels)
+    {
+        pixelobj.setColor(new Color(255-pixelobj.getRed(),255-pixelobj.getGreen(),255-pixelobj.getBlue()));
+    }
 
-
-    /**/
+    /*
         //access each index
     System.out.println(pixels[17]);
     //access each pixel
@@ -141,7 +186,7 @@ final double  FACTOR = .5;
     ferris1.explore();
     ferris2.explore();
 
-  /**/ 
+  /*
     //write/save a picture as a file
     ferris1.write("images/ferris11.jpg");
 
