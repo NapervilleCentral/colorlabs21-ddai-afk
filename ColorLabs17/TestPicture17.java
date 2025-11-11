@@ -29,25 +29,20 @@ public class TestPicture17
       Pixel[] px4 = pic4.getPixels();
       
       pic1.explore();
+      //adjustRed
+      double factorRed = 0.5;
+      for (Pixel pxobj : px1)
+      {
+          pxobj.setRed((int)(pxobj.getRed()*factorRed));
+      }
+      pic1.explore();
       //negate
       for (Pixel pxobj : px1)
       {
           pxobj.setColor(new Color(255-pxobj.getRed(),255-pxobj.getGreen(),255-pxobj.getBlue()));
       }
       pic1.explore();
-      //darken
-      for (Pixel pxobj : px1)
-      {
-          pxobj.setColor(new Color((int)(pxobj.getRed()*0.5),(int)(pxobj.getGreen()*0.5),(int)(pxobj.getBlue()*0.5)));
-      }
-      pic1.explore();
       
-      pic2.explore();
-      //adjustRed
-      for (Pixel pxobj : px2)
-      {
-          
-      }
       pic2.explore();
       //grayscale
       for (Pixel pxobj : px2)
@@ -56,7 +51,36 @@ public class TestPicture17
           pxobj.setColor(new Color((int)avg,(int)avg,(int)avg));
       }
       pic2.explore();
+      //darken
+      for (Pixel pxobj : px2)
+      {
+          pxobj.setColor(new Color((int)(pxobj.getRed()*0.5),(int)(pxobj.getGreen()*0.5),(int)(pxobj.getBlue()*0.5)));
+      }
+      pic2.explore();
       
+      pic3.explore();
+      //blueify
+      //Color faceColor = new Color(255,195,170);//skin color?
+      Color faceColor = new Color(28,54,19);//plant color
+      for (Pixel pxobj : px3)
+      {
+          if ((Math.abs(pxobj.getRed()-faceColor.getRed())<10)&&(Math.abs(pxobj.getGreen()-faceColor.getGreen())<15)&&(Math.abs(pxobj.getBlue()-faceColor.getBlue())<20))
+          {
+              pxobj.setBlue(255);
+          }
+      }
+      pic3.explore();
+      //changeColor
+      int redAmt = 23;
+      int greenAmt = 56;
+      int blueAmt = 67;
+      for (Pixel pxobj : px3)
+      {
+          pxobj.setRed(pxobj.getRed()+redAmt);
+          pxobj.setGreen(pxobj.getGreen()+greenAmt);
+          pxobj.setBlue(pxobj.getBlue()+blueAmt);
+      }
+      //pic3.explore();
       //opens picture using a dialog box
       /*
      String fileName = FileChooser.pickAFile();
