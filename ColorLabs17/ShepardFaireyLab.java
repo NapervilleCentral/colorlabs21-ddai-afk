@@ -35,12 +35,28 @@ public class ShepardFaireyLab
           * method 1 change
           * 
           */
+         /**/
          Pixel[] px1 = me1.getPixels();
          //convert to grayscale first
+         int max1 = 0;
+         int min1 = 255;
          for (Pixel pxobj : px1)
          {
-             int avg = (pxobj.getRed()+pxobj.getGreen()+pxobj.getBlue())/3;
+             int avg = (int) pxobj.getAverage();
              pxobj.setColor(new Color(avg,avg,avg));
+             if (avg>max1)
+                 max1 = avg;
+             if (avg<min1)
+                 min1 = avg;
+         }
+         int countingcolor = min;
+         for (int i = 0 ; i<px1.length-1 ; i++)
+         {
+             for (int j = 0 ; j<px1.length-1 ; j++)
+             {
+                 if (px1[j].getRed()==countingcolor)
+                     px1[j].setColor(255
+             }
          }
          me1.explore();
          
@@ -48,7 +64,32 @@ public class ShepardFaireyLab
           * method 2 change
           * 
           */
-         
+         /*
+         Pixel[] px2 = me2.getPixels();
+         //convert to grayscale first
+         int max2 = 0;
+         int min2 = 255;
+         for (Pixel pxobj : px2)
+         {
+             int avg = (int) pxobj.getAverage();
+             pxobj.setColor(new Color(avg,avg,avg));
+             if (avg>max2)
+                 max2 = avg;
+             if (avg<min2)
+                 min2 = avg;
+         }
+         for (int i = 0 ; i<px2.length-1 ; i++)
+         {
+             if (px2[i].getRed()<min2+((max2-min2)/4))
+                 px2[i].setColor(new Color(0,0,100));
+             else if (px2[i].getRed()<min2+2*((max2-min2)/4))
+                 px2[i].setColor(new Color(255,0,0));
+             else if (px2[i].getRed()<min2+3*((max2-min2)/4))
+                 px2[i].setColor(new Color(100,200,255));
+             else if (px2[i].getRed()<max2)
+                 px2[i].setColor(new Color(255,255,200));
+         }
+         me2.explore();
          /**
           * custom color palette
           */
