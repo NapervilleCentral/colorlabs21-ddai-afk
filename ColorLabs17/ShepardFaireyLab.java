@@ -27,7 +27,7 @@ public class ShepardFaireyLab
          //relative path
          Picture apic = new Picture("images\\IMG_0747.jpeg");
          //change with selfie picture
-         Picture me1 = new Picture("images/IMG_0747.jpeg");
+         Picture me1 = new Picture("images/caterpillar.jpg");
          Picture me2 = new Picture("images/IMG_0747.jpeg");
          Picture me3 = new Picture("images/IMG_0747.jpeg");
          
@@ -49,15 +49,7 @@ public class ShepardFaireyLab
              if (avg<min1)
                  min1 = avg;
          }
-         int countingcolor = min;
-         for (int i = 0 ; i<px1.length-1 ; i++)
-         {
-             for (int j = 0 ; j<px1.length-1 ; j++)
-             {
-                 if (px1[j].getRed()==countingcolor)
-                     px1[j].setColor(255
-             }
-         }
+         
          me1.explore();
          
          /**
