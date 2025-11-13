@@ -27,7 +27,7 @@ public class ShepardFaireyLab
          //relative path
          Picture apic = new Picture("images\\IMG_0747.jpeg");
          //change with selfie picture
-         Picture me1 = new Picture("images/caterpillar.jpg");
+         Picture me1 = new Picture("images/IMG_0747.jpeg");
          Picture me2 = new Picture("images/IMG_0747.jpeg");
          Picture me3 = new Picture("images/IMG_0747.jpeg");
          
@@ -35,7 +35,7 @@ public class ShepardFaireyLab
           * method 1 change
           * 
           */
-         /**/
+         /*
          Pixel[] px1 = me1.getPixels();
          //convert to grayscale first
          int max1 = 0;
@@ -49,7 +49,29 @@ public class ShepardFaireyLab
              if (avg<min1)
                  min1 = avg;
          }
-         
+         for (int countColor = min1, pxCount = 0 ; countColor < max1 ; countColor++)
+         {
+             for (int i = 0, j = 0 ; j != -1 && i < px1.length-1 ; i++, j++)
+             {
+                 if (px1[i].getRed()==countColor)
+                 {
+                     if (pxCount<px1.length/4)
+                         px1[i].setColor(new Color(0,0,100));
+                     else if (pxCount<px1.length/2)
+                         px1[i].setColor(new Color(255,0,0));
+                     else if (pxCount<3*(px1.length/4))
+                         px1[i].setColor(new Color(100,200,255));
+                     else if (pxCount<px1.length)
+                         px1[i].setColor(new Color(255,255,200));
+                         
+                     pxCount++;
+                 }
+                 if (((pxCount<px1.length/4)&&(pxCount==(px1.length/4)-1))||((pxCount<px1.length/2)&&(pxCount==(3*(px1.length/4))-1))||((pxCount<px1.length/4)&&(pxCount==(3*(px1.length/4))-1))||((pxCount<px1.length)&&(pxCount==(px1.length)-1)))
+                     {
+                         j = -3;
+                     }
+             }
+         }
          me1.explore();
          
          /**
