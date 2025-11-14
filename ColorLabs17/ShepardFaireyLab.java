@@ -73,7 +73,7 @@ public class ShepardFaireyLab
              }
          }
          me1.explore();
-         
+         /**/
          /**
           * method 2 change
           * 
@@ -104,10 +104,40 @@ public class ShepardFaireyLab
                  px2[i].setColor(new Color(255,255,200));
          }
          me2.explore();
+         /**/
          /**
           * custom color palette
           */
-
+         Pixel[] px3 = me3.getPixels();
+         //convert to grayscale first
+         int max3 = 0;
+         int min3 = 255;
+         for (Pixel pxobj : px3)
+         {
+             int avg = (int) pxobj.getAverage();
+             pxobj.setColor(new Color(avg,avg,avg));
+             if (avg>max3)
+                 max3 = avg;
+             if (avg<min3)
+                 min3 = avg;
+         }
+         for (int i = 0 ; i<px3.length-1 ; i++)
+         {
+             if (px3[i].getRed()<min3+((max3-min3)/5))
+                 px3[i].setColor(new Color(72,0,100));
+             else if (px3[i].getRed()<min3+2*((max3-min3)/5))
+                 px3[i].setColor(new Color(84,0,150));
+             else if (px3[i].getRed()<min3+3*((max3-min3)/5))
+                 px3[i].setColor(new Color(64,32,180));
+             else if (px3[i].getRed()<min3+4*((max3-min3)/5))
+                 px3[i].setColor(new Color(64,120,200));
+             else if (px3[i].getRed()<max3)
+                 px3[i].setColor(new Color(100,240,200));
+         }
+         me3.explore();
+         
+         //me3.write("images\\SFtry2.png");
+         /**/
          
     }//main       
 }//class

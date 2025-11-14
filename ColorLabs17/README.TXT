@@ -11,4 +11,5 @@ HOW TO START THIS PROJECT:
 AUTHORS:
 USER INSTRUCTIONS:
 
-1. Who - Critique
+1. Cole Patterson - Looks pretty good, needs more mid-range colors, especially between the bright green and the blue.
+2. Cal - Add more mid-range colors (could use more colors on the face), move range of darker colors up
