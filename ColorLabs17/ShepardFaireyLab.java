@@ -136,7 +136,7 @@ public class ShepardFaireyLab
          }
          me3.explore();
          
-         //me3.write("images\\SFtry2.png");
+         //me3.write("images\\SFmyFinal.png");
          /**/
          
     }//main       
