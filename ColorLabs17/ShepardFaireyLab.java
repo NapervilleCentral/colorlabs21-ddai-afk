@@ -49,6 +49,7 @@ public class ShepardFaireyLab
              if (avg<min1)
                  min1 = avg;
          }
+         //same number of pixels for all colors
          for (int countColor = min1, pxCount = 0 ; countColor < max1 ; countColor++)
          {
              for (int i = 0, j = 0 ; j != -1 && i < px1.length-1 ; i++, j++)
@@ -92,6 +93,7 @@ public class ShepardFaireyLab
              if (avg<min2)
                  min2 = avg;
          }
+         //colors based on intensity
          for (int i = 0 ; i<px2.length-1 ; i++)
          {
              if (px2[i].getRed()<min2+((max2-min2)/4))
@@ -112,6 +114,7 @@ public class ShepardFaireyLab
          //convert to grayscale first
          int max3 = 0;
          int min3 = 255;
+         //grayscale first
          for (Pixel pxobj : px3)
          {
              int avg = (int) pxobj.getAverage();
@@ -121,6 +124,8 @@ public class ShepardFaireyLab
              if (avg<min3)
                  min3 = avg;
          }
+         //based on method 2, colors by intensity
+         //palette is dark purple to blue-green
          for (int i = 0 ; i<px3.length-1 ; i++)
          {
              if (px3[i].getRed()<min3+((max3-min3)/5))
@@ -128,7 +133,7 @@ public class ShepardFaireyLab
              else if (px3[i].getRed()<min3+2*((max3-min3)/5))
                  px3[i].setColor(new Color(84,0,150));
              else if (px3[i].getRed()<min3+3*((max3-min3)/5))
-                 px3[i].setColor(new Color(64,32,180));
+                 px3[i].setColor(new Color(64,48,180));
              else if (px3[i].getRed()<min3+4*((max3-min3)/5))
                  px3[i].setColor(new Color(64,120,200));
              else if (px3[i].getRed()<max3)
