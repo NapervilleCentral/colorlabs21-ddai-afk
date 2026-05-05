@@ -216,4 +216,25 @@ final double  FACTOR = .5;
 
     /**/
   }//main
+  
+  /**
+    * Method to mirror part of the temple picture around a
+    * vertical line at the mirror point
+    */
+    public static void mirrorTemple()
+    {
+        Picture temple = new Picture("images\\temple.jpg");
+        Pixel[] px1 = temple.getPixels();
+        for (int i = 0 ; i < px1.length ; i++)
+        {
+            int x = px1[i].getX();
+            int y = px1[i].getY();
+            if (x > 14 && x < 277 && y > 27 && y < 160)
+            {
+                Pixel target = temple.getPixel(539-(x-14),y);
+                target.setColor(px1[i].getColor());
+            }
+        }
+        temple.explore();
+    }
 }//class

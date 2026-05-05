@@ -14,12 +14,17 @@ public class posterSample5
   public static void main(String[] args)
   {
       
-     Picture apic = new Picture("images\\KatieFancy.jpg");
-     Picture canvas = new Picture("images\\poster5.jpg");
+     Picture pic1 = new Picture("images\\KatieFancy.jpg");
+     Picture pic2 = new Picture("images\\posterimage1.png");
+     Picture pic3 = new Picture("images\\posterimage1.png");
+     Picture pic4 = new Picture("images\\posterimage1.png");
+     Picture pic5 = new Picture("images\\posterimage1.png");
+     Picture pic6 = new Picture("images\\posterimage1.png");
+     Picture canvas = new Picture("images\\poster5.png");
       //makes an array of pixels--GIVEN YOU NEED THIS
      Pixel[] pixels;
      //gets pixels from picture and assigns to pixels array
-     pixels = apic.getPixels();//GET ALL THE PIXELS
+     pixels = pic1.getPixels();//GET ALL THE PIXELS
      
     for (Pixel spot : pixels)
     {
@@ -29,9 +34,16 @@ public class posterSample5
 
      
     }
-    apic.explore();//method - does something
+    pic1.explore();//method - does something
     
-    copyKatie(apic,canvas);
+    copyKatie(pic1,canvas,0,0);
+    
+    copyKatie(pic2,canvas,1586,0);
+    copyKatie(pic3,canvas,3172,0);
+    copyKatie(pic4,canvas,0,1057);
+    copyKatie(pic5,canvas,3172,1057);
+    copyKatie(pic6,canvas,3172,1057);
+    
     canvas.explore();
    }
   
@@ -40,7 +52,7 @@ public class posterSample5
     * position of int x, y for placement on the target
     */
    
-   public static void copyKatie( Picture sourcePic, Picture targetPic)
+   public static void copyKatie( Picture sourcePic, Picture targetPic,int toX, int toY)
    {
        Pixel sourcePix = null;
        Pixel targetPix = null;
@@ -48,12 +60,12 @@ public class posterSample5
        //width of the source must be <= to the canvas I am 
        //going to copy to
        
-       for (int sourceX = 0, targetX = 100;
+       for (int sourceX = 0, targetX = toX;
             sourceX<sourcePic.getWidth();
             sourceX++, targetX ++)
             {
             
-            for (int sourceY = 0, targetY = 100;
+            for (int sourceY = 0, targetY = toY;
             sourceY<sourcePic.getHeight();
             sourceY++, targetY ++)
             {
