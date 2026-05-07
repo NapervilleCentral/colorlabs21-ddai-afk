@@ -40,19 +40,29 @@ public class posterSample5
     /*PICTURE 2*/
     
     pixels = pic2.getPixels();
-    mirrorYaxisBottom(pic2);
+    mirrorVerticalBottom(pic2);
     
     /*PICTURE 3*/
     
-    
+    grayscale(pic3);
+    mirrorHorizontalLeft(pic3);
     
     /*PICTURE 4*/
     
-    
+    pixels = pic4.getPixels();
+    Pixel[] edges = edgedetect(pic4,25);
+    for (Pixel pixel : pixels)
+    {
+        pixel.setColor(Color.black);
+    }
+    for (Pixel pixel : edges)
+    {
+        pixel.setColor(Color.white);
+    }
     
     /*PICTURE 5*/
     
-    
+    invert(pic5);
     
     /*PICTURE 6*/
     
@@ -129,7 +139,7 @@ public class posterSample5
         }
     }
     
-    public static void mirrorYaxisTop(Picture pic)
+    public static void mirrorVerticalTop(Picture pic)
     {
         for (int x = 0 ; x < pic.getWidth() ; x++)
         {
@@ -140,14 +150,73 @@ public class posterSample5
         }
     }
     
-    public static void mirrorYaxisBottom(Picture pic)
+    public static void mirrorVerticalBottom(Picture pic)
     {
         for (int x = 0 ; x < pic.getWidth() ; x++)
         {
-            for (int y = pic.getHeight() ; y >= pic.getHeight()/2 ; y++)
+            for (int y = pic.getHeight()-1 ; y >= pic.getHeight()/2 ; y--)
             {
                 pic.getPixel(x,Math.clamp(pic.getHeight()-y,0,pic.getHeight()-1)).setColor(pic.getPixel(x,y).getColor());
             }
+        }
+    }
+    
+    public static void mirrorHorizontalLeft(Picture pic)
+    {
+        for (int x = 0 ; x < pic.getWidth()/2 ; x++)
+        {
+            for (int y = 0 ; y < pic.getHeight() ; y++)
+            {
+                pic.getPixel(Math.clamp(pic.getWidth()-x,0,pic.getWidth()-1),y).setColor(pic.getPixel(x,y).getColor());
+            }
+        }
+    }
+    
+    public static void grayscale(Picture pic)
+    {
+        Pixel[] pix = pic.getPixels();
+        for (Pixel pixel : pix)
+        {
+            int average = (int) pixel.getAverage();
+            pixel.setColor(new Color(average,average,average));
+        }
+    }
+    
+    public static Pixel[] edgedetect(Picture pic, int threshold)
+    {
+        Pixel[] store = new Pixel[pic.getWidth()*pic.getHeight()];
+        int count = 0;
+        for (int x = 0 ; x < pic.getWidth() ; x++)
+        {
+            for (int y = 1 ; y < pic.getHeight() ; y++)
+            {
+                double colordist = pic.getPixel(x,y).colorDistance(pic.getPixel(x,y-1).getColor());
+                if (colordist > threshold)
+                {
+                    store[count] = pic.getPixel(x,y);
+                    count++;
+                }
+            }
+        }
+        
+        Pixel[] result = new Pixel[count];
+        for (int i = 0 ; i < result.length ; i++)
+        {
+            result[i] = store[i];
+        }
+        return result;
+    }
+    
+    public static void blend(Picture base, Picture toblend)
+    {
+        
+    }
+    
+    public static void invert(Picture pic)
+    {
+        for (Pixel pixel : pic.getPixels())
+        {
+            pixel.setColor(new Color(255-pixel.getRed(),255-pixel.getGreen(),255-pixel.getBlue()));
         }
     }
 }
