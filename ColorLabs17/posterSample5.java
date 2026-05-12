@@ -30,11 +30,7 @@ public class posterSample5
      
     for (Pixel spot : pixels)
     {
-        //System.out.println( spot );
-        spot.setRed((int)(spot.getRed() *.1));
-     
-
-     
+        spot.setGreen((int)(spot.getGreen() *.1));
     }
     recursiveShrink(pic1);
     /*PICTURE 2*/
@@ -63,6 +59,7 @@ public class posterSample5
     /*PICTURE 5*/
     
     invert(pic5);
+    flipY(pic5);
     
     /*PICTURE 6*/
     
@@ -190,10 +187,11 @@ public class posterSample5
         {
             for (int y = 1 ; y < pic.getHeight() ; y++)
             {
-                double colordist = pic.getPixel(x,y).colorDistance(pic.getPixel(x,y-1).getColor());
+                Pixel pixel = pic.getPixel(x,y);
+                double colordist = pixel.colorDistance(pic.getPixel(x,y-1).getColor());
                 if (colordist > threshold)
                 {
-                    store[count] = pic.getPixel(x,y);
+                    store[count] = pixel;
                     count++;
                 }
             }
@@ -205,6 +203,21 @@ public class posterSample5
             result[i] = store[i];
         }
         return result;
+    }
+    
+    public static void flipY(Picture pic)
+    {
+        for (int x = 0 ; x < pic.getWidth() ; x++)
+        {
+            for (int y = 0 ; y < pic.getHeight()/2 ; y++)
+            {
+                Pixel currentPixel = pic.getPixel(x,y);
+                Pixel swapPixel = pic.getPixel(pic.getWidth()-x-1,pic.getHeight()-y-1);
+                Color originalColor = currentPixel.getColor();
+                currentPixel.setColor(swapPixel.getColor());
+                swapPixel.setColor(originalColor);
+            }
+        }
     }
     
     public static void blend(Picture base, Picture toblend)
